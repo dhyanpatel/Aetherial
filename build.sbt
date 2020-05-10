@@ -1,4 +1,4 @@
-name := "AetherialModule"
+name := "Aetherial"
 
 version := "0.1"
 
