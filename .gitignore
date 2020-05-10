@@ -1,0 +1,30 @@
+# Generic
+*.class
+*.log
+*.iml
+*.ipr
+*.iws
+out
+.cache/
+.history/
+.lib/
+dist/*
+target/
+bin/
+libexec/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+logs/
+project/*-shim.sbt
+project/project/
+project/target/
+.scala_dependencies
+.worksheet
+
+# My IDE
+.idea
+
+# Config File
+application.conf
