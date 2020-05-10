@@ -5,15 +5,13 @@ import Commands.Birthdays.SetBirthday
 
 class AetherialListener extends ListenerAdapter {
 
-  private var commands = Map("!setBirthday" -> SetBirthday)
+  private val commands = SetBirthday.aliases.map(_ -> SetBirthday).toMap
 
   override def onMessageReceived(event: MessageReceivedEvent): Unit = {
     val msg = event.getMessage
-    try {
-      commands(msg.getContentRaw.split(' ')(0)).execute(event)
-    } catch {
-      case x: NoSuchElementException =>
-    }
+
+    commands.get(msg.getContentRaw.split("\\s").head).foreach(_.execute(event))
+
   }
 
 }
