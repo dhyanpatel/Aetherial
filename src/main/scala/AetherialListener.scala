@@ -9,9 +9,6 @@ class AetherialListener extends ListenerAdapter {
 
   override def onMessageReceived(event: MessageReceivedEvent): Unit = {
     val msg = event.getMessage
-
     commands.get(msg.getContentRaw.split("\\s").head).foreach(_.execute(event))
-
   }
-
 }
