@@ -1,0 +1,8 @@
+secrets {
+    botPrefix = ""
+    discordToken = ""
+    databaseIP = ""
+    databaseName = ""
+    databaseUser = ""
+    databasePass = ""
+}
