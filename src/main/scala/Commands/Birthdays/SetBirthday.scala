@@ -4,7 +4,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 
 object SetBirthday extends Command{
 
-  override var aliases: Array[String] = Array("!setBirthday", "!addBirthday")
+  override var aliases: Array[String] = Array("setBirthday", "addBirthday")
   override var name: String = "SetBirthday"
 
   override def execute(event: MessageReceivedEvent): Unit = {
