@@ -2,6 +2,7 @@ secrets {
     botPrefix = ""
     discordToken = ""
     databaseIP = ""
+    databasePort = ""
     databaseName = ""
     databaseUser = ""
     databasePass = ""
