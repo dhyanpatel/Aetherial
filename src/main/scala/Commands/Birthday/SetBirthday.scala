@@ -1,16 +1,12 @@
-package Commands.Birthdays
+package Commands.Birthday
 
-import Commands.Command
+import Commands.SubCommand
 import cats.effect.{IO, Resource}
 import doobie.hikari.HikariTransactor
 import doobie.implicits._
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 
-object SetBirthday extends Command {
-
-  override val aliases: Seq[String] = Seq("setBirthday", "addBirthday")
-  override val name: String = "SetBirthday"
-
+object SetBirthday extends SubCommand {
   override def execute(event: MessageReceivedEvent, transactor: Resource[IO, HikariTransactor[IO]]): Unit = {
     // Exit if invalid command
     if (!validateCommand(event))
@@ -36,6 +32,6 @@ object SetBirthday extends Command {
 
     // Only 1 parameter required (birth date)
     // Birth date must be dd-mm-yyyy format
-    message.length == 2 && message.last.matches("\\d\\d-\\d\\d-\\d\\d\\d\\d")
+    message.length == 3 && message.last.matches("\\d\\d-\\d\\d-\\d\\d\\d\\d")
   }
 }
