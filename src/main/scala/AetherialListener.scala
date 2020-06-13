@@ -1,4 +1,4 @@
-import Commands.Birthdays.SetBirthday
+import Commands.Birthday.Birthday
 import cats.effect.{IO, Resource}
 import doobie.hikari.HikariTransactor
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
@@ -7,9 +7,10 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter
 class AetherialListener(val prefix: String, val transactor: Resource[IO, HikariTransactor[IO]])
   extends ListenerAdapter {
 
-  private val commands = SetBirthday.aliases.map(prefix + _ -> SetBirthday).toMap
+  private val commands = Birthday.aliases.map(prefix + _ -> Birthday).toMap
 
   override def onMessageReceived(event: MessageReceivedEvent): Unit = {
-    commands.get(event.getMessage.getContentRaw.split("\\s").head).foreach(_.execute(event, transactor))
+    commands.get(event.getMessage.getContentRaw.split("\\s").head)
+      .foreach(_.getSubCommand(event).execute(event, transactor))
   }
 }
