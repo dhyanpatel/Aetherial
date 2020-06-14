@@ -13,6 +13,9 @@ object Help extends Command with SubCommand{
   override def getSubCommand(event: MessageReceivedEvent): SubCommand = {
     event.getMessage.getContentRaw.split("\\s+").lift(1) match{
       case None => Help
+      case Some(value) => {
+        case _ => Help
+      }
     }
   }
 
