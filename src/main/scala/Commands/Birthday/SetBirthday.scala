@@ -28,7 +28,7 @@ object SetBirthday extends SubCommand {
   }
 
   override def validateCommand(event: MessageReceivedEvent): Boolean = {
-    val message = event.getMessage.getContentRaw.split(" ")
+    val message = event.getMessage.getContentRaw.split("\\s+")
 
     // Only 1 parameter required (birth date)
     // Birth date must be dd-mm-yyyy format
