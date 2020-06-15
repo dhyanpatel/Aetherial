@@ -10,9 +10,7 @@ object Help extends Command with SubCommand {
   override val name: String = "Help"
 
   override def getSubCommand(event: MessageReceivedEvent): SubCommand = {
-    event.getMessage.getContentRaw.split("\\s+").lift(1) match {
-      case _ => Help
-    }
+    Help
   }
 
   override def execute(event: MessageReceivedEvent, transactor: Resource[IO, HikariTransactor[IO]]): Unit = {
