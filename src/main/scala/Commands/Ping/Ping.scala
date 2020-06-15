@@ -14,8 +14,7 @@ object Ping extends Command with SubCommand {
   }
 
   override def execute(event: MessageReceivedEvent, transactor: Resource[IO, HikariTransactor[IO]]): Unit = {
-    event.getChannel.sendMessage(
-      "Pong \n").queue()
+    event.getChannel.sendMessage("Pong\n").queue()
   }
 
   override def validateCommand(event: MessageReceivedEvent): Boolean = {
