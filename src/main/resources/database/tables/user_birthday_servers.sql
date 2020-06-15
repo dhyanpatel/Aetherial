@@ -1,15 +1,14 @@
--- Table: public.server_channels
+-- Table: public.user_birthday_servers
 
--- DROP TABLE public.server_channels;
+-- DROP TABLE public.user_birthday_servers;
 
-CREATE TABLE public.server_channels
+CREATE TABLE public.user_birthday_servers
 (
-    server_id bigint NOT NULL,
-    channel_id bigint NOT NULL,
-    type text COLLATE pg_catalog."default" NOT NULL
+    user_id bigint NOT NULL,
+    server_id bigint NOT NULL
 )
 
 TABLESPACE pg_default;
 
-ALTER TABLE public.server_channels
+ALTER TABLE public.user_birthday_servers
     OWNER to postgres;
