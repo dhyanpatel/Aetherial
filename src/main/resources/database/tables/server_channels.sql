@@ -6,7 +6,7 @@ CREATE TABLE public.server_channels
 (
     server_id bigint NOT NULL,
     channel_id bigint NOT NULL,
-    type text COLLATE pg_catalog."default" NOT NULL
+--     type text COLLATE pg_catalog."default" NOT NULL
 )
 
 TABLESPACE pg_default;
