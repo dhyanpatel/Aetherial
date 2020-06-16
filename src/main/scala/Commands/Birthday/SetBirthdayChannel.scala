@@ -10,7 +10,6 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 object SetBirthdayChannel extends SubCommand {
   override def execute(event: MessageReceivedEvent, transactor: Resource[IO, HikariTransactor[IO]]): Unit = {
     if(!validateCommand(event)){
-      event.getChannel.sendMessage("Only an admin can use this command").queue()
       return
     }
 
@@ -30,7 +29,26 @@ object SetBirthdayChannel extends SubCommand {
   }
 
   override def validateCommand(event: MessageReceivedEvent): Boolean = {
-    event.getMember.hasPermission(Permission.ADMINISTRATOR)
 
+    if(event.getMember.hasPermission(Permission.ADMINISTRATOR)){
+      val message = event.getMessage.getContentRaw.split("\\s+")
+      if(message.length == 2){
+        true
+      }
+      else{
+        event.getChannel.sendMessage("Make sure no extra text is included after 'channel' in the command").queue()
+        false
+      }
+    }
+    else{
+      event.getChannel.sendMessage("Only users with a role with administrator privileges can use this command!").queue()
+      false
+    }
   }
+
+
+
+
+
+
 }

@@ -6,7 +6,8 @@ CREATE TABLE public.server_channels
 (
     server_id bigint NOT NULL,
     channel_id bigint NOT NULL,
---     type text COLLATE pg_catalog."default" NOT NULL
+    CONSTRAINT "ServerChannels_pkey" PRIMARY KEY (server_id)
+
 )
 
 TABLESPACE pg_default;
