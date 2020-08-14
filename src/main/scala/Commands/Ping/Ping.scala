@@ -1,8 +1,8 @@
 package Commands.Ping
 
 import Commands.{Command, SubCommand}
-import cats.effect.{IO, Resource}
-import doobie.hikari.HikariTransactor
+import cats.effect.IO
+import doobie.Transactor
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 
 object Ping extends Command with SubCommand {
@@ -13,7 +13,7 @@ object Ping extends Command with SubCommand {
     Ping
   }
 
-  override def execute(event: MessageReceivedEvent, transactor: Resource[IO, HikariTransactor[IO]]): Unit = {
+  override def execute(event: MessageReceivedEvent, xa: Transactor[IO]): Unit = {
     event.getChannel.sendMessage("Pong").queue()
   }
 

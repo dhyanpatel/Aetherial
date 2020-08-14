@@ -1,3 +1,4 @@
+import cats.Applicative.ops.toAllApplicativeOps
 import cats.effect._
 import com.typesafe.config.ConfigFactory
 import doobie._
@@ -13,7 +14,7 @@ object Aetherial {
     implicit val contextShift: ContextShift[IO] = IO.contextShift(ExecutionContext.global)
     val transactor: Resource[IO, HikariTransactor[IO]] = {
       for {
-        ce <- ExecutionContexts.fixedThreadPool[IO](32) // our connect EC
+        ce <- ExecutionContexts.fixedThreadPool[IO](4) // our connect EC
         be <- Blocker[IO] // our blocking EC
         xa <- HikariTransactor.newHikariTransactor[IO](
           "org.postgresql.Driver", // driver classname
@@ -29,9 +30,13 @@ object Aetherial {
       } yield xa
     }
 
-    JDABuilder.createDefault(config.getString("secrets.discordToken"))
-      .addEventListeners(new AetherialListener(config.getString("secrets.botPrefix"), transactor))
-      .setActivity(Activity.playing(s"Type ${config.getString("secrets.botPrefix")}help"))
-      .build()
+    transactor.use { xa =>
+      IO {
+        JDABuilder.createDefault(config.getString("secrets.discordToken"))
+          .addEventListeners(new AetherialListener(config.getString("secrets.botPrefix"), xa))
+          .setActivity(Activity.playing(s"Type ${config.getString("secrets.botPrefix")}help"))
+          .build()
+      } *> IO.never
+    }.unsafeRunSync
   }
 }

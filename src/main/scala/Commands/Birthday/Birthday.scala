@@ -2,6 +2,7 @@ package Commands.Birthday
 
 import Commands.{Command, SubCommand}
 import cats.effect.{IO, Resource}
+import doobie.Transactor
 import doobie.hikari.HikariTransactor
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 
@@ -21,7 +22,7 @@ object Birthday extends Command with SubCommand {
     }
   }
 
-  override def execute(event: MessageReceivedEvent, transactor: Resource[IO, HikariTransactor[IO]]): Unit = {
+  override def execute(event: MessageReceivedEvent, xa: Transactor[IO]): Unit = {
     event.getChannel.sendMessage("Here are a few subcommands for Birthday:\n" +
       "set - Set your birthday\n" +
       "remove - Remove your birthday\n" +
