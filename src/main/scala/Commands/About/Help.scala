@@ -1,9 +1,8 @@
 package Commands.About
 
 import Commands.{Command, SubCommand}
-import cats.effect.{IO, Resource}
+import cats.effect.IO
 import doobie.Transactor
-import doobie.hikari.HikariTransactor
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 
 object Help extends Command with SubCommand {

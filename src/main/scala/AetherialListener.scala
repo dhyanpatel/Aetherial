@@ -1,9 +1,8 @@
 import Commands.About.Help
 import Commands.Birthday.Birthday
 import Commands.Ping.Ping
-import cats.effect.{IO, Resource}
+import cats.effect.IO
 import doobie.Transactor
-import doobie.hikari.HikariTransactor
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 
