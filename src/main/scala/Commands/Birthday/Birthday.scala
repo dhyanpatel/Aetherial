@@ -16,6 +16,7 @@ object Birthday extends Command with SubCommand {
       case Some(value) => value match {
         case "set" => SetBirthday
         case "enable" => EnableBirthday
+        case "channel" => SetBirthdayChannel
         case _ => Birthday
       }
     }
