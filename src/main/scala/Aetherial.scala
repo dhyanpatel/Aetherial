@@ -5,6 +5,8 @@ import doobie._
 import doobie.hikari.HikariTransactor
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.entities.Activity
+import net.dv8tion.jda.api.requests.GatewayIntent
+import net.dv8tion.jda.api.utils.MemberCachePolicy
 
 import scala.concurrent.ExecutionContext
 
@@ -33,6 +35,8 @@ object Aetherial {
     transactor.use { xa =>
       IO {
         JDABuilder.createDefault(config.getString("secrets.discordToken"))
+          .enableIntents(GatewayIntent.GUILD_MEMBERS)
+          .setMemberCachePolicy(MemberCachePolicy.ALL)
           .addEventListeners(new AetherialListener(config.getString("secrets.botPrefix"), xa))
           .setActivity(Activity.playing(s"Type ${config.getString("secrets.botPrefix")}help"))
           .build()

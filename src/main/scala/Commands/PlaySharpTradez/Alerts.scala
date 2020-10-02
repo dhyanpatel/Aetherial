@@ -26,15 +26,18 @@ object Alerts extends SubCommand {
         null,
         event.getAuthor.getAvatarUrl)
       .setThumbnail(event.getGuild.getIconUrl)
-      .setDescription("[Click here to go to the alert]("+event.getMessage.getJumpUrl+")")
+      .setDescription("[Click here to go to the alert](" + event.getMessage.getJumpUrl + ")")
       .addField(event.getChannel.getName, event.getMessage.getContentRaw, false)
-      .setFooter(LocalDateTime.now.format(DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm")))
+      .setFooter(LocalDateTime.now.format(DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm"))).build()
 
-    result.foreach(user => {
-      event.getJDA.getUserById(user).openPrivateChannel().queue(channel => {
-        channel.sendMessage(eb.build).queue()
+    result.foreach(userId => {
+      event.getJDA.retrieveUserById(userId).queue(user => {
+        user.openPrivateChannel().queue(channel => {
+          channel.sendMessage(eb).queue()
+        })
       })
     })
+
   }
 
   override def validateCommand(event: MessageReceivedEvent): Boolean = {
