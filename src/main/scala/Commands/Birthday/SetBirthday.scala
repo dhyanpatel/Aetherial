@@ -16,7 +16,7 @@ object SetBirthday extends SubCommand {
 
     val userId = event.getAuthor.getId
     val date = event.getMessage.getContentRaw.split(" ").last
-    // If DB returned true
+
     // Run Database operation
     val result =
     sql"SELECT fn_set_user_birthday(CAST($userId AS BIGINT), CAST($date AS DATE))"

@@ -11,7 +11,3 @@ libraryDependencies ++= Seq(
   "org.tpolecat" %% "doobie-hikari" % "0.8.8",
   "org.postgresql" % "postgresql"% "42.2.14"
 )
-
-resolvers ++= Seq(JCenterRepository)
-
-enablePlugins(JavaAppPackaging)
