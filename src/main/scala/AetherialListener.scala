@@ -27,7 +27,7 @@ class AetherialListener(val prefix: String, val xa: Transactor[IO])
         event.getChannel.sendMessage(s"Sorry ${event.getAuthor.getAsTag}, you can't link other Discord Servers here!").queue()
       }
     }
-    if(Seq(721867084979634216L, 711488476914122766L, 721454945198538763L).contains(event.getChannel.getIdLong)){
+    if(Seq(750496901803147364L, 744332554366353501L, 750496942810857552L, 747518698713252012L).contains(event.getChannel.getIdLong)){
       Alerts.execute(event, xa)
     }
 
