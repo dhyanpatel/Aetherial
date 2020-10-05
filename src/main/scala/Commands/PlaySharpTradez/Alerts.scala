@@ -10,6 +10,8 @@ import doobie.implicits._
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 
+import scala.jdk.CollectionConverters.CollectionHasAsScala
+
 object Alerts extends SubCommand {
   override def execute(event: MessageReceivedEvent, xa: Transactor[IO]): Unit = {
     // Run Database operation
@@ -26,10 +28,7 @@ object Alerts extends SubCommand {
         null,
         event.getAuthor.getAvatarUrl)
       .setThumbnail(event.getGuild.getIconUrl)
-      .setImage(event.getMessage.getAttachments.isEmpty match {
-        case true => null
-        case false => event.getMessage.getAttachments.get(0).getUrl
-      })
+      .setImage(event.getMessage.getAttachments.asScala.headOption.map(_.getUrl).orNull)
       .setDescription("[Click here to go to the alert](" + event.getMessage.getJumpUrl + ")")
       .addField(event.getChannel.getName, event.getMessage.getContentRaw, false)
       .setFooter(LocalDateTime.now.format(DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm"))).build()
