@@ -36,6 +36,7 @@ object Aetherial {
       IO {
         JDABuilder.createDefault(config.getString("secrets.discordToken"))
           .enableIntents(GatewayIntent.GUILD_MEMBERS)
+          .disableIntents(GatewayIntent.DIRECT_MESSAGES)
           .setMemberCachePolicy(MemberCachePolicy.ALL)
           .addEventListeners(new AetherialListener(config.getString("secrets.botPrefix"), xa))
           .setActivity(Activity.playing(s"Type ${config.getString("secrets.botPrefix")}help"))
