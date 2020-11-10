@@ -1,3 +1,5 @@
+package me.aethen.aetherial
+
 import cats.Applicative.ops.toAllApplicativeOps
 import cats.effect._
 import com.typesafe.config.ConfigFactory
@@ -39,7 +41,7 @@ object Aetherial {
           .disableIntents(GatewayIntent.DIRECT_MESSAGES)
           .setMemberCachePolicy(MemberCachePolicy.ALL)
           .addEventListeners(new AetherialListener(config.getString("secrets.botPrefix"), xa))
-          .setActivity(Activity.playing(s"Type ${config.getString("secrets.botPrefix")}help"))
+          .setActivity(Activity.playing(s"Contact Aethen#8828 for questions"))
           .build()
       } *> IO.never
     }.unsafeRunSync

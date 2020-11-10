@@ -1,4 +1,4 @@
-package Commands
+package me.aethen.aetherial.commands
 
 import cats.effect.IO
 import doobie.Transactor

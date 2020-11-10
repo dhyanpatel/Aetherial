@@ -1,6 +1,6 @@
-package Commands.Birthday
+package me.aethen.aetherial.commands.birthday
 
-import Commands.SubCommand
+import me.aethen.aetherial.commands.SubCommand
 import cats.effect.IO
 import doobie.Transactor
 import doobie.implicits._

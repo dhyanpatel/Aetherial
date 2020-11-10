@@ -1,6 +1,6 @@
-package Commands.Ping
+package me.aethen.aetherial.commands.ping
 
-import Commands.{Command, SubCommand}
+import me.aethen.aetherial.commands.{Command, SubCommand}
 import cats.effect.IO
 import doobie.Transactor
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent

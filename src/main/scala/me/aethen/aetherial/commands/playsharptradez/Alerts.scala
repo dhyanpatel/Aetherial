@@ -1,9 +1,8 @@
-package Commands.PlaySharpTradez
+package me.aethen.aetherial.commands.playsharptradez
 
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-
-import Commands.SubCommand
+import me.aethen.aetherial.commands.SubCommand
 import cats.effect.IO
 import doobie.Transactor
 import doobie.implicits._

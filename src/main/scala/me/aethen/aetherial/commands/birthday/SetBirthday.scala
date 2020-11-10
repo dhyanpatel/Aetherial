@@ -1,6 +1,6 @@
-package Commands.Birthday
+package me.aethen.aetherial.commands.birthday
 
-import Commands.SubCommand
+import me.aethen.aetherial.commands.SubCommand
 import cats.effect.IO
 import doobie.Transactor
 import doobie.implicits._
@@ -19,11 +19,11 @@ object SetBirthday extends SubCommand {
 
     // Run Database operation
     val result =
-    sql"SELECT fn_set_user_birthday(CAST($userId AS BIGINT), CAST($date AS DATE))"
-      .query[Boolean]
-      .unique
-      .transact(xa)
-      .unsafeRunSync()
+      sql"SELECT fn_set_user_birthday(CAST($userId AS BIGINT), CAST($date AS DATE))"
+        .query[Boolean]
+        .unique
+        .transact(xa)
+        .unsafeRunSync()
 
     if (result)
       event.getChannel.sendMessage("Birthday Successfully Added!").queue()

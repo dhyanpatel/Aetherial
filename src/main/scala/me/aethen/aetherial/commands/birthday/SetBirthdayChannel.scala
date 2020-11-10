@@ -1,5 +1,5 @@
-package Commands.Birthday
-import Commands.SubCommand
+package me.aethen.aetherial.commands.birthday
+import me.aethen.aetherial.commands.SubCommand
 import cats.effect.{IO, Resource}
 import doobie.Transactor
 import doobie.hikari.HikariTransactor
