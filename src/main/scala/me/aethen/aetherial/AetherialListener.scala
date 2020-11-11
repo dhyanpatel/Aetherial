@@ -34,6 +34,7 @@ class AetherialListener(val prefix: String, val xa: Transactor[IO])
       }
       if(event.getMessage.getContentRaw.contains("uni-airdrop")){
         event.getGuild.ban(event.getAuthor, 1, "Spam").queue()
+        event.getChannel.sendMessage(s"User ${event.getAuthor.getName} has been banned for spamming").queue()
       }
     }
     if (playsharpPremiumChannels.contains(event.getChannel.getIdLong)) {
