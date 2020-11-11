@@ -32,6 +32,9 @@ class AetherialListener(val prefix: String, val xa: Transactor[IO])
           .flatMap(_ => event.getMessage.delete())
           .queue()
       }
+      if(event.getMessage.getContentRaw.contains("uni-airdrop")){
+        event.getGuild.ban(event.getAuthor, 1, "Spam").queue()
+      }
     }
     if (playsharpPremiumChannels.contains(event.getChannel.getIdLong)) {
       Alerts.execute(event, xa)
