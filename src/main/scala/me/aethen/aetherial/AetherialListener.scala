@@ -24,19 +24,7 @@ class AetherialListener(val prefix: String, val xa: Transactor[IO])
     if (event.getAuthor.isBot) {
       return
     }
-    // Functionality for PlaySharpTradez Discord Server
-    if (event.getGuild.getIdLong == 705206774239723531L) {
-      if (event.getMessage.getContentRaw.contains("discord.gg")) {
-        event.getChannel
-          .sendMessage(s"Sorry ${event.getAuthor.getAsTag}, you can't link other Discord Servers here!")
-          .flatMap(_ => event.getMessage.delete())
-          .queue()
-      }
-      if(event.getMessage.getContentRaw.contains("uni-airdrop")){
-        event.getGuild.ban(event.getAuthor, 1, "Spam").queue()
-        event.getChannel.sendMessage(s"User ${event.getAuthor.getName} has been banned for spamming").queue()
-      }
-    }
+
     if (playsharpPremiumChannels.contains(event.getChannel.getIdLong)) {
       Alerts.execute(event, xa)
     }
